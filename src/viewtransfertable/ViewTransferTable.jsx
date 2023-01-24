@@ -3,11 +3,16 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  margin: 1%;
+
 `
 
 const ViewTransferTable = () => {
   return (
-    <Container>Hello ViewTransferTable</Container>
+    <Container>
+      <h1>View Transfer Table</h1>
+    </Container>
   )
 }
 
