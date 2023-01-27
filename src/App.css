@@ -1,3 +1,7 @@
+body {
+  background-color: #ffba08;
+}
+
 /* From View HTML */
 .container {
   max-width: 100%;

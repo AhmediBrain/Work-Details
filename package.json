@@ -5,7 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.14",
+    "@material/textfield": "^14.0.0",
+    "@mui/material": "^5.11.6",
     "@mui/x-data-grid": "^5.17.13",
     "@mui/x-data-grid-generator": "^5.17.13",
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,6 +18,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.42.1",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
