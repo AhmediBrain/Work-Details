@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from "react";
-import { useForm, FormProvider, Controller, useFormContext } from "react-hook-form";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 // //import ViewTransferTable from './viewtransfertable/ViewTransferTable';
 //import Form from './components/forms/Form';
 // //import ViewDataTransfer from './ViewDataTransfer';
@@ -33,31 +33,14 @@ import { TextField } from '@mui/material'
 
 
 function App() {
-
-  //let data;
-
-  // const [texting, setTexting] = useState('Room')
-
   const { control, handleSubmit } = useForm();
-  //const methods = useForm();
 
   const onSubmit = (data, e) => {
     e.preventDefault();
     console.log(data);
 }
 
-// const handleChange = (e) => {
-//   setTexting(e.target.value)
-// }
-
   return (
-    //   <FormProvider {...methods}>
-    //   <div className="container py-4">
-    //     {/* <Form methods={methods} /> */}
-    //     <Form methods={methods} />
-    //   </div>
-    // </FormProvider>
-
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller 
@@ -72,8 +55,8 @@ function App() {
               </TextField>
           )} />
 
-      <button type='submit'>Submit</button>
-    </form>
+        <button type='submit'>Submit</button>
+      </form>
     </>
     
   );

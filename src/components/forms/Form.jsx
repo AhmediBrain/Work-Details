@@ -1,7 +1,7 @@
 import React from "react";
 //import { useForm } from "react-hook-form";
-import AddressForm from "./AddressForm";
-import BasicForm from './BasicForm';
+//import AddressForm from "./AddressForm";
+//import BasicForm from './BasicForm';
 import ContactForm from './ContactForm'
 
 
