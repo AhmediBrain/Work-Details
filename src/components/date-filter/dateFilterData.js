@@ -55,3 +55,18 @@ export const Users = [
         hoursSubmit: '1'
     }
 ]
+
+export const dateRanges = [
+    {
+        field: 'all_dates',
+        headerName: 'All Dates'
+    },
+    {
+        field: 'by_date',
+        headerName: 'By Date'
+    },
+    {
+        field: 'custom_date',
+        headerName: 'Custom'
+    }
+]

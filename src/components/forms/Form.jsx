@@ -1,12 +1,12 @@
 import React from "react";
-//import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 //import AddressForm from "./AddressForm";
 //import BasicForm from './BasicForm';
 import ContactForm from './ContactForm'
 
 
 const Form = ({ methods }) => {
-  //const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm();
   //const onSubmit = (data) => console.log(data);
 
   const onSubmit = handleSubmit((data) => console.log(data));

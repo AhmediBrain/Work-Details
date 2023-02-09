@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Users } from './dateFilterData'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 import axios from 'axios';
+import { MenuItem, Select } from '@mui/material';
+import { dateRanges } from './dateFilterData';
 
 
 const DateRangeFilter = () => {
@@ -11,6 +12,7 @@ const DateRangeFilter = () => {
     const [endDate, setEndDate] = useState(new Date());
     const [data, setData] = useState([])
     const [allData, setAllData] = useState([])
+
 
     useEffect(() => {
         axios.get('https://63e3cccf65ae49317717cc20.mockapi.io/any')
@@ -46,8 +48,19 @@ const DateRangeFilter = () => {
 
   return (
     <div>
-        <h3> Date Range Filter </h3>
-        <DateRangePicker
+        <Select>
+            {dateRanges.map((item, index) => {
+                return(
+                    <>
+                        <MenuItem 
+                        key={index} 
+                        value={item.field}>
+                        {item.headerName}
+                    </MenuItem>
+                    <div>
+                        {item.field === 'custom_date' ? 
+                            <div>
+                                <DateRangePicker
             ranges={[selectionRange]}
             onChange={handleSelect}
         />
@@ -74,6 +87,16 @@ const DateRangeFilter = () => {
                 })}
             </tbody>
         </table>
+                            </div> :
+                            null
+                        }
+                    </div>
+                    </>
+                )
+            })}
+        </Select>
+        <h3> Date Range Filter </h3>
+        
     </div>
   )
 }
