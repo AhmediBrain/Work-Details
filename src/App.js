@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import DateRangeFilter from './components/date-filter/DateRangeFilter';
+import DateFilterTypes from './components/date-filter/DateFilterTypes';
+import Navbar from './Navbar';
 import MainRoutes from './routes/MainRoutes';
 // //import ViewTransferTable from './viewtransfertable/ViewTransferTable';
 //import Form from './components/forms/Form';
@@ -24,12 +25,11 @@ function App() {
         <ViewTransferCopy />*/}
         {/* <ViewTransferTable />
         <Form />
-        <MainRoutes />
         <h3>Hello</h3> 
-        <DateRangeFilter /> */}
-
-        <DateRangeFilter />
-      
+        <DateRangeFilter /> 
+        <DateFilterTypes /> */}
+      <Navbar />
+      <MainRoutes />
     </div>
   );
 }

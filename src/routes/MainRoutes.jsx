@@ -1,18 +1,27 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
-import DateRangeFilter from '../components/date-filter/DateRangeFilter'
-import ComponentRoutes from './ComponentRoutes'
+import Home from '../Home'
+import Form from '../components/forms/Form'
+// children: [
+//   {
+//     path: "forms",
+//     element: <Form />
+//   }
+// ]
 
 const MainRoutes = () => {
-  return useRoutes ([
+  let element = useRoutes([
     {
-        ...ComponentRoutes()
+      path: '/',
+      element: <Home />,
     },
     {
-        path: '/date-range',
-        element: <DateRangeFilter />
+      path: 'forms',
+      element: <Form />
     }
   ])
+
+  return element;
 }
 
 export default MainRoutes

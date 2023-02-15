@@ -1,8 +1,7 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
 
 const BasicForm = () => {
-  const { register } = useFormContext();
+  
   return (
     <div className="card border-0 mb-4">
       <div className="card-header">Basic Form</div>
@@ -12,7 +11,6 @@ const BasicForm = () => {
             type="text"
             className="form-control"
             placeholder="Enter Your First Name"
-            ref={register}
             name="firstName"
           />
         </div>
@@ -21,7 +19,6 @@ const BasicForm = () => {
             type="text"
             className="form-control"
             placeholder="Enter Your Middle Name"
-            ref={register}
             name="middleName"
           />
         </div>
@@ -30,7 +27,6 @@ const BasicForm = () => {
             type="text"
             className="form-control"
             placeholder="Enter Your Last Name"
-            ref={register}
             name="lastName"
           />
         </div>
