@@ -1,7 +1,10 @@
 import React from 'react'
-import { useRoutes } from 'react-router-dom'
+import { Outlet, useRoutes } from 'react-router-dom'
 import Home from '../Home'
 import Form from '../components/forms/Form'
+import DateFilterTypes from '../components/date-filter/DateFilterTypes'
+import FilterPracticeTypes from '../components/date-filter/filter-practice/FilterPracticeTypes'
+import SimpleSearchTable from '../search/SimpleSearchTable'
 // children: [
 //   {
 //     path: "forms",
@@ -17,7 +20,29 @@ const MainRoutes = () => {
     },
     {
       path: 'forms',
-      element: <Form />
+      element: <>
+                  <Outlet />
+              </>,
+      children: [
+        {
+          path: 'form-page',
+          element: <Form />
+        }
+      ]
+    },
+    {
+      path: 'date-filter',
+      element: <DateFilterTypes />
+    },
+    {
+      path: 'practice',
+      element: <FilterPracticeTypes />
+    },
+    {
+      path: 'search',
+      //element: <SearchDataFilter />
+      //element: <SimpleSearchData />
+      element: <SimpleSearchTable />
     }
   ])
 

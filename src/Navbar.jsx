@@ -18,8 +18,23 @@ const Navbar = () => {
             </Link>
         </div>
         <div>
-            <Link to='forms'>
+            <Link to='/forms/form-page'>
                 Form
+            </Link>
+        </div>
+        <div>
+            <Link to='date-filter'>
+                Date Filter
+            </Link>
+        </div>
+        <div>
+            <Link to='practice'>
+                Practice
+            </Link>
+        </div>
+        <div>
+            <Link to='search'>
+                Search
             </Link>
         </div>
     </Container>

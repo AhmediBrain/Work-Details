@@ -16,6 +16,7 @@ const DateFilterTypes = () => {
 
     const dateChange = (e) => {
         setValue(e.target.value);
+        setDateType(e.target.value)
         console.log(e.target.value)
     }
 

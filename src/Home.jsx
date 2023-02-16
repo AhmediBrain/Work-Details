@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 
 // : GridColDef[]
@@ -37,9 +37,10 @@ const columns = [
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
   
-  export default function DataTable() {
+  const DataTable = () => {
+    
     return (
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 400, width: '100%' }}>      
         <DataGrid
           rows={rows}
           columns={columns}
@@ -50,3 +51,5 @@ const columns = [
       </div>
     );
   }
+
+  export default DataTable
