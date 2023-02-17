@@ -3,8 +3,9 @@ import { Outlet, useRoutes } from 'react-router-dom'
 import Home from '../Home'
 import Form from '../components/forms/Form'
 import DateFilterTypes from '../components/date-filter/DateFilterTypes'
-import FilterPracticeTypes from '../components/date-filter/filter-practice/FilterPracticeTypes'
+//import FilterPracticeTypes from '../components/date-filter/filter-practice/FilterPracticeTypes'
 import SimpleSearchTable from '../search/SimpleSearchTable'
+import FilterRangeTypes from '../components/date-filter/filter-practice/FilterRangeTypes'
 // children: [
 //   {
 //     path: "forms",
@@ -36,7 +37,8 @@ const MainRoutes = () => {
     },
     {
       path: 'practice',
-      element: <FilterPracticeTypes />
+      //element: <FilterPracticeTypes />
+      element: <FilterRangeTypes />
     },
     {
       path: 'search',

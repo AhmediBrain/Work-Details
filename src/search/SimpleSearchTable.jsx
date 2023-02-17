@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { searchTitle } from './searchData'
+import { searchData, searchTitle } from './searchData'
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 1%;
 `
 
 const SimpleSearchTable = () => {
-    const [value, setValue] = useState('')
-    console.log(value)
+    const [search, setSearch] = useState('')
+    console.log(search)
 
   return (
     <Container>
@@ -18,18 +19,43 @@ const SimpleSearchTable = () => {
             <input 
                 type='text' 
                 placeholder='Search...' 
-                onChange={(e) => setValue(e.target.value)} />
-            <table style={{display: 'flex'}}>
+                onChange={(e) => setSearch(e.target.value)} />
+        </div>
+        <div>
+            <table>
                 <thead>
-                    <tr>
-                        {searchTitle.map((item, index) => {
-                            return(
-                                <td key={index}>{item.title}</td>
-                            )
-                        })}
-                    </tr>
-                    
+                    {searchTitle.map((item, index) => {
+                        return(
+                            <th key={index}>
+                                {item.title}
+                            </th>
+                        )
+                    })}
                 </thead>
+                <tbody>
+                    {searchData.filter((item) => {
+                        return search.toLowerCase() === '' ? 
+                        item : item.author.toLowerCase().includes(search)
+                    }).map((item, index) => {
+                        return(
+                            <tr>
+                                <td key={index}>
+                                    {item.author}
+                                </td>
+                                <td>
+                                    {item.country}
+                                </td>
+                                <td>
+                                    {item.title}
+                                </td>
+                                <td>
+                                    {item.language}
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
+                </tbody>
             </table>
         </div>
     </Container>
