@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-import ModalBox from './components/modal/ModalBox';
 
 // : GridColDef[]
 // : GridValueGetterParams
@@ -39,8 +38,7 @@ const columns = [
   ];
   
   const DataTable = () => {
-    const [openModal, setOpenModal] = useState(false);
-    
+        
     return (
       <div style={{ height: 400, width: '100%' }}>      
         <DataGrid
@@ -50,14 +48,6 @@ const columns = [
           rowsPerPageOptions={[5]}
           checkboxSelection
         />
-        <div>
-          <h3>Click the Button to open the Modal</h3>
-          <button 
-            onClick={() => setOpenModal(true)}>
-            Open
-          </button>
-          {openModal && <ModalBox closeModal={setOpenModal} />}
-        </div>
       </div>
     );
   }

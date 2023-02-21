@@ -37,6 +37,16 @@ const Navbar = () => {
                 Search
             </Link>
         </div>
+        <div>
+            <Link to='open-modal'>
+                Modal
+            </Link>
+        </div>
+        <div>
+            <Link to='mapping'>
+                Mapping
+            </Link>
+        </div>
     </Container>
   )
 }

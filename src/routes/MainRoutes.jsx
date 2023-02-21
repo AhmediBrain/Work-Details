@@ -6,6 +6,8 @@ import DateFilterTypes from '../components/date-filter/DateFilterTypes'
 //import FilterPracticeTypes from '../components/date-filter/filter-practice/FilterPracticeTypes'
 import SimpleSearchTable from '../search/SimpleSearchTable'
 import FilterRangeTypes from '../components/date-filter/filter-practice/FilterRangeTypes'
+import ModalContainer from '../components/modal/ModalContainer'
+import MappingDiv from '../components/mapping-div/MappingDiv'
 // children: [
 //   {
 //     path: "forms",
@@ -45,6 +47,14 @@ const MainRoutes = () => {
       //element: <SearchDataFilter />
       //element: <SimpleSearchData />
       element: <SimpleSearchTable />
+    },
+    {
+      path: 'open-modal',
+      element: <ModalContainer />
+    },
+    {
+      path: 'mapping',
+      element: <MappingDiv />
     }
   ])
 
