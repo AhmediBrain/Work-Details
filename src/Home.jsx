@@ -1,8 +1,13 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
+import styled from 'styled-components';
 
 // : GridColDef[]
 // : GridValueGetterParams
+const Container = styled.div`
+  display: flex;
+  margin: 1%;
+`
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -40,15 +45,17 @@ const columns = [
   const DataTable = () => {
         
     return (
-      <div style={{ height: 400, width: '100%' }}>      
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+      <Container>
+        <div style={{ height: 400, width: '100%' }}>      
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
       </div>
+      </Container>
     );
   }
 

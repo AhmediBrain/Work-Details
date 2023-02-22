@@ -1,35 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import DateFilterTypes from './components/date-filter/DateFilterTypes';
-import Navbar from './Navbar';
-import MainRoutes from './routes/MainRoutes';
-// //import ViewTransferTable from './viewtransfertable/ViewTransferTable';
-//import Form from './components/forms/Form';
-// //import ViewDataTransfer from './ViewDataTransfer';
-// //import ViewTransferCopy from './studentform/viewformCopy/ViewTransferCopy';
-//import Form from './studentform/transferform/Form';
-// //import SearchBar from './search/SearchBar';
-// //import FileUploadPage from './studentform/Upload';
-// //import BookData from "./Data.json";
-//import { TextField } from '@mui/material'
+import React, { useState } from "react";
+import { LoginContext } from './contexts/LoginContext';
+import ProjectLogin from './ProjectLogin';
+import Profile from './Profile';
 
 
 function App() {
+  const [showProfile, setShowProfile] = useState(false)
+  const [userName, setUserName] = useState('')
+
   return (
     <div>
-      {/*<Form />
-      <FileUploadPage />
-      <SearchBar placeholder="Book Name..." 
-        data={BookData} />
-        <ViewTransferCopy />*/}
-        {/* <ViewTransferTable />
-        <Form />
-        <h3>Hello</h3> 
-        <DateRangeFilter /> 
-        <DateFilterTypes /> */}
-      <Navbar />
-      <MainRoutes />
+      <LoginContext.Provider value={{userName, setUserName, setShowProfile}}>
+        {showProfile ? <Profile /> : <ProjectLogin />}
+      </LoginContext.Provider>
     </div>
   );
 }

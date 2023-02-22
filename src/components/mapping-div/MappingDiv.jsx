@@ -34,6 +34,12 @@ const MappingDiv = () => {
     setAddMore(moreAdd)
   }
 
+  const handleCancel = (e) => {
+    const cancelTask = [...addMore]
+    cancelTask.splice(e, 1)
+    setAddMore(cancelTask)
+  }
+
   return (
     <Container>
        <InputLabel>
@@ -45,12 +51,19 @@ const MappingDiv = () => {
        </AddButton>
        {addMore.map((data, f) => {
         return(
-          <Widget key={f}>
-            <InputLabel  
-              value={data}>
-              Hello
-            </InputLabel>
-          </Widget>
+          <>
+            <Widget key={f}>
+              <InputLabel  
+                value={data}>
+                Hello
+              </InputLabel>
+            </Widget>
+            <button 
+              type='button' 
+              onClick={(e) => handleCancel(e, f)}>
+              X
+            </button>
+          </>
         )
        })}
     </Container>
