@@ -3,8 +3,8 @@ import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 
 const DateFilterItems = ({type, name}) => {
-    const [forDate, setForDate] = useState('')
-    const [toDate, setToDate] = useState('')
+    const [forDate, setForDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+    const [toDate, setToDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [dateValue, setDateValue] = useState('')
 
     const forDateChange = (e) => {
@@ -29,13 +29,13 @@ const DateFilterItems = ({type, name}) => {
                         <TextField 
                             type='date' 
                             label='From' 
-                            defaultValue={moment(new Date()).format('YYYY-MM-DD')} 
+                            defaultValue={forDate} 
                             onChange={forDateChange} />
             
                         <TextField 
                             type='date'
                             label='To' 
-                            defaultValue={moment(new Date()).format('YYYY-MM-DD')} 
+                            defaultValue={toDate} 
                             onChange={toDateChange} />
                     </>
                 ) : null

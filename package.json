@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@material/textfield": "^14.0.0",
+    "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.6",
     "@mui/x-data-grid": "^5.17.13",
     "@mui/x-data-grid-generator": "^5.17.13",
