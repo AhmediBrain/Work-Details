@@ -47,6 +47,11 @@ const Navbar = () => {
                 Mapping
             </Link>
         </div>
+        <div>
+            <Link to='information'>
+                Information
+            </Link>
+        </div>
     </Container>
   )
 }

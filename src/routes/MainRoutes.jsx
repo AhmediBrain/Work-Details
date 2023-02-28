@@ -8,6 +8,7 @@ import SimpleSearchTable from '../search/SimpleSearchTable'
 import FilterRangeTypes from '../components/date-filter/filter-practice/FilterRangeTypes'
 import ModalContainer from '../components/modal/ModalContainer'
 import MappingDiv from '../components/mapping-div/MappingDiv'
+import ParentsInfo from '../components/ParentsInfo'
 // children: [
 //   {
 //     path: "forms",
@@ -55,6 +56,10 @@ const MainRoutes = () => {
     {
       path: 'mapping',
       element: <MappingDiv />
+    },
+    {
+      path: 'information',
+      element: <ParentsInfo />
     }
   ])
 
