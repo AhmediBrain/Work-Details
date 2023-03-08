@@ -9,6 +9,7 @@ import FilterRangeTypes from '../components/date-filter/filter-practice/FilterRa
 import ModalContainer from '../components/modal/ModalContainer'
 import MappingDiv from '../components/mapping-div/MappingDiv'
 import ParentsInfo from '../components/ParentsInfo'
+import MultipleApi from '../components/MultipleApi'
 // children: [
 //   {
 //     path: "forms",
@@ -60,6 +61,10 @@ const MainRoutes = () => {
     {
       path: 'information',
       element: <ParentsInfo />
+    },
+    {
+      path: 'multiple',
+      element: <MultipleApi />
     }
   ])
 
