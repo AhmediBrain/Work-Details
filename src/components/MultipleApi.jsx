@@ -1,57 +1,93 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { MenuItem, Select } from '@mui/material'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { bookInfo, infoData } from './multipleData'
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 96%;
-    margin: auto;
-    padding: 10px;
-    background-color: #94BCFC;
+    margin: 1%;
+`
+const NameSelect = styled.select`
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+`
+const NameDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+`
+const Para = styled.p`
+    margin: 0px;
 `
 
 const MultipleApi = () => {
-    const [playerName, setPlayerName] = useState([])
-    const [playerTeam, setPlayerTeam] = useState([])
-    const [firstName, setFirstName] = useState('')
+    const [authorId, setAuthorId] = useState('')
 
-    const playerInformation = () => {
-        const playerAPI = 'https://www.balldontlie.io/api/v1/players'
-        const teamAPI = 'https://www.balldontlie.io/api/v1/teams'
-
-        const getNBAPlayer = axios.get(playerAPI)
-        const getNBATeam = axios.get(teamAPI)
-        axios.all([getNBAPlayer, getNBATeam]).then(
-            axios.spread((...allData) => {
-                const allNBAPlayer = allData[5].data.first_name
-                const allNBATeam = allData[1]
-
-                setPlayerName(allNBAPlayer)
-                console.log(allNBAPlayer)
-                console.log(allNBATeam)
-            })
-        )
+    const handleNameChange = (e) => {
+        setAuthorId(e.target.value);
+        console.log(e.target.value);
     }
-
-    useEffect(() => {
-        playerInformation()
-    }, [firstName])
 
   return (
     <Container>
-        <h3>NBA Player Information</h3>
-        <input 
-            type='text' 
-            placeholder='Search...' 
-            style={{width: '200px', border: 'none', outline: 'none', padding: '5px'}} />
-        <div>
-            {playerName.map((user) => {
-                return(
-                    <p>player{user}</p>
-                )
-            })}
-        </div>
+        <NameDiv>
+            <NameSelect 
+                value={authorId} 
+                onChange={handleNameChange}>
+                {infoData.map((sub, i) => {
+                    const fName = sub.first_name;
+                    const lName = sub.last_name;
+                    var fullName = (`${fName}` + ' ' + `${lName}`)
+
+                    return(
+                        <option 
+                            key={i} 
+                            value={sub.id}>
+                            {fullName}
+                        </option>
+                    )
+                })}
+            </NameSelect>
+        </NameDiv>
+        <NameDiv>
+            <Para>
+                {infoData.length > 0 ? infoData[0].first_name : 'Author Name'}
+            </Para>
+            <Para>Author is from Country.</Para>
+        </NameDiv>
+        <NameDiv>
+            <table>
+                <thead>
+                    <tr>
+                        {bookInfo.map((title) => {
+                            return(
+                                <th key={title.id}>
+                                    {title.headerName}
+                                </th>
+                            )
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            No Data 
+                        </td>
+                        <td>
+                            No Data
+                        </td>
+                        <td>
+                            No Data
+                        </td>
+                        <td>
+                            No Data
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </NameDiv>
     </Container>
   )
 }
