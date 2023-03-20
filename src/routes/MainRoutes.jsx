@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet, useRoutes } from 'react-router-dom'
 import Home from '../Home'
-import Form from '../components/forms/Form'
+//import Form from '../components/forms/Form'
 import DateFilterTypes from '../components/date-filter/DateFilterTypes'
 //import FilterPracticeTypes from '../components/date-filter/filter-practice/FilterPracticeTypes'
 import SimpleSearchTable from '../search/SimpleSearchTable'
@@ -10,6 +10,7 @@ import ModalContainer from '../components/modal/ModalContainer'
 import MappingDiv from '../components/mapping-div/MappingDiv'
 import ParentsInfo from '../components/ParentsInfo'
 import MultipleApi from '../components/MultipleApi'
+import BasicForm from '../components/forms/BasicForm'
 // children: [
 //   {
 //     path: "forms",
@@ -31,7 +32,7 @@ const MainRoutes = () => {
       children: [
         {
           path: 'form-page',
-          element: <Form />
+          element: <BasicForm />
         }
       ]
     },

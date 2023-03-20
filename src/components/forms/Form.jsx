@@ -7,11 +7,13 @@ import ContactForm from './ContactForm'
 const Form = () => {
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <BasicForm />
       <AddressForm />
       <ContactForm />
-      <button className="btn btn-primary">
+      <button 
+        className="btn btn-primary" 
+        type="submit">
         Create New Account
       </button>
     </form>
