@@ -12,6 +12,19 @@ const BasicForm = () => {
   const { handleSubmit, handleChange, values, errors } = useForm(validate)
   console.log(values)
   
+  let timeStamp = new Date().getTime();
+  let bathCount = 1;
+
+  let report_id = 'Wellness_Report' + timeStamp;
+  console.log('Report Id: ', report_id);
+
+  let bath_id = 'Wellness_Report' + timeStamp + '_' + bathCount;
+  console.log('Bath Id: ', bath_id)
+  
+  for(let i = 0; i < 100; i++ ) {
+    return bathCount++;
+  }
+
   return (
     <div className="card border-0 mb-4">
       <div className="card-header">Personal Information</div>
