@@ -4,7 +4,8 @@ const useForm = (validate) => {
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        phone: ''
     })
 
     const [errors, setErrors] = useState({})
@@ -12,7 +13,7 @@ const useForm = (validate) => {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setValues({
-            ...values,
+            ...value,
             [name]: value
         })
     }

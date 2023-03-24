@@ -10,7 +10,6 @@ const Small = styled.p`
 
 const BasicForm = () => {
   const { handleSubmit, handleChange, values, errors } = useForm(validate)
-  console.log(values)
   
   let timeStamp = new Date().getTime();
   let bathCount = 1;
@@ -20,10 +19,6 @@ const BasicForm = () => {
 
   let bath_id = 'Wellness_Report' + timeStamp + '_' + bathCount;
   console.log('Bath Id: ', bath_id)
-  
-  for(let i = 0; i < 100; i++ ) {
-    return bathCount++;
-  }
 
   return (
     <div className="card border-0 mb-4">

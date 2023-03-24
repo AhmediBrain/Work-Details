@@ -2,8 +2,6 @@ import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import styled from 'styled-components';
 
-// : GridColDef[]
-// : GridValueGetterParams
 const Container = styled.div`
   display: flex;
   margin: 1%;
@@ -54,7 +52,7 @@ const columns = [
             rowsPerPageOptions={[5]}
             checkboxSelection
           />
-      </div>
+        </div>
       </Container>
     );
   }
