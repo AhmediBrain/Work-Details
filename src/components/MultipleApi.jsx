@@ -1,7 +1,7 @@
-import { MenuItem, Select } from '@mui/material'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { bookInfo, infoData } from './multipleData'
+import ReactRecipeApp from './recipe-app/components/ReactRecipeApp'
 
 const Container = styled.div`
     display: flex;
@@ -39,7 +39,7 @@ const MultipleApi = () => {
                 {infoData.map((sub, i) => {
                     const fName = sub.first_name;
                     const lName = sub.last_name;
-                    var fullName = (`${fName}` + ' ' + `${lName}`)
+                    var fullName = (`${fName}` + ` ` + `${lName}`)
 
                     return(
                         <option 
@@ -88,6 +88,7 @@ const MultipleApi = () => {
                 </tbody>
             </table>
         </NameDiv>
+        <ReactRecipeApp />
     </Container>
   )
 }
