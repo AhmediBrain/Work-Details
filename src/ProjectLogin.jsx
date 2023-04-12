@@ -4,8 +4,19 @@ import { LoginContext } from './contexts/LoginContext'
 
 const Container = styled.div`
     display: flex;
-    margin: auto;
     flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+`
+const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
+const Details = styled.div`
+    display: flex;
+    margin: auto;
+    justify-content: 
 `
 
 const ProjectLogin = () => {
@@ -14,28 +25,28 @@ const ProjectLogin = () => {
   return (
     <Container>
         <h3>Login</h3>
-        <form>
-            <div>
+        <LoginForm>
+            <Details>
                 <label>UserName:</label>
                 <input 
                     type='text' 
                     onChange={(e) => {
                         setUserName(e.target.value)
                     }} />
-            </div>
-            <div>
+            </Details>
+            <Details>
                 <label>Password:</label>
                 <input 
                     type='password' />
-            </div>
-            <div>
+            </Details>
+            <Details>
                 <button 
                     type='submit' 
                     onClick={() => setShowProfile(true)}>
                     Login
                 </button>
-            </div>
-        </form>
+            </Details>
+        </LoginForm>
     </Container>
   )
 }

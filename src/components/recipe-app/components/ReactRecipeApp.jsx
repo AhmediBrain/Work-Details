@@ -40,6 +40,7 @@ const AppRecipes = styled.div`
 const ReactRecipeApp = () => {
     const [query, setQuery] = useState('')
     const [recipes, setRecipes] = useState([])
+    console.log(recipes)
 
     const RECIPE_APP_ID = `82e453da`
     const RECIPE_APP_KEY = "3bb5d1a3b992f408b9003effd74c9c22"
@@ -75,10 +76,9 @@ const ReactRecipeApp = () => {
             {recipes !== [] && 
                 recipes.map((recipe) => {
                     return(
-                        <RecipeTile recipe={recipe} />
+                        <RecipeTile key={recipe.id} recipe={recipe} />
                     )
                 })}
-                what?
         </AppRecipes>
     </AppContainer>
   )

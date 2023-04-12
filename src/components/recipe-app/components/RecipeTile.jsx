@@ -20,15 +20,18 @@ const RecipeTileName = styled.p`
     text-align: center;
     margin: 12px 0px;
 `
+//.match(/\.(jpeg|jpg|gif|png)$/)
 
 export default function RecipeTile({ recipe }) {
+    let imageRecipe = recipe["recipe"]["image"]
+    console.log(imageRecipe)
   return (
-    recipe["recipe"]["image"].match(/\.(jpeg|jpg|gif|png)$/) != null && (
-        <RecipeContainer 
-            onClick={() => window.open(recipe["recipe"]["url"])}>
-            <RecipeTileImg src={recipe["recipe"]["image"]} />
-            <RecipeTileName key={uuidv4()}>
+    recipe["recipe"]["image"] !== null && (
+        <RecipeContainer key={uuidv4()}>
+            <RecipeTileImg alt='' src={imageRecipe} />
+            <RecipeTileName >
                 {recipe["recipe"]["label"]}
+                
             </RecipeTileName>
         </RecipeContainer>
     )

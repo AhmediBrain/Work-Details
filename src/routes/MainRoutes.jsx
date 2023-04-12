@@ -11,6 +11,7 @@ import MappingDiv from '../components/mapping-div/MappingDiv'
 import ParentsInfo from '../components/ParentsInfo'
 import MultipleApi from '../components/MultipleApi'
 import BasicForm from '../components/forms/BasicForm'
+import ReactWeatherApp from '../components/weather-app/ReactWeatherApp'
 // children: [
 //   {
 //     path: "forms",
@@ -66,6 +67,10 @@ const MainRoutes = () => {
     {
       path: 'multiple',
       element: <MultipleApi />
+    },
+    {
+      path: 'weather',
+      element: <ReactWeatherApp />
     }
   ])
 

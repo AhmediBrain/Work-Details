@@ -57,6 +57,11 @@ const Navbar = () => {
                 Multiple
             </Link>
         </div>
+        <div>
+            <Link to='weather'>
+                Weather
+            </Link>
+        </div>
     </Container>
   )
 }
