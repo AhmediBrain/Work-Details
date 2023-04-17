@@ -4,10 +4,16 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { dateRanges } from './dateFilterData'
 import DateFilterItems from './DateFilterItems'
+import UniqueList from '../UniqueList'
 
 const Container = styled.div`
     display: flex;
     margin: 1%;
+`
+const ListSec = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 `
 
 const DateFilterTypes = () => {
@@ -22,6 +28,7 @@ const DateFilterTypes = () => {
 
   return (
     <Container>
+        <ListSec>
         <InputLabel>
             Date Types: 
         </InputLabel>
@@ -40,6 +47,11 @@ const DateFilterTypes = () => {
         </Select>
         {value && <DateFilterItems 
             type={value} name={dateType} />}
+        </ListSec>
+
+        <ListSec>
+            <UniqueList />
+        </ListSec>
     </Container>
   )
 }
