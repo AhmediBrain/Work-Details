@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+
+    <h1>Tele-Health Data Table</h1>
+
+    <div id="data-table">
+        <!-- <table id="html-data-table">
+            <tr>
+                <th>userId</th>
+                <th>id</th>
+                <th>title</th>
+                <th>completed</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>My todo 1</td>
+                <td>false</td>
+            </tr>
+        </table>     -->
+    </div>
+
+    
+
+    <script type="text/javascript" charset="utf-8">
+
+        // fetch('https://jsonplaceholder.typicode.com/todos')
+        //     .then(function (response) {
+        //         return response.json();
+        //     }).then(function (apiJsonData) {
+        //         console.log(apiJsonData);
+        //         renderDataInTheTable(apiJsonData);
+        //     })
+
+        // function renderDataInTheTable(todos) {
+        //     const mytable = document.getElementById("html-data-table");
+        //     todos.forEach(todo => {
+        //         let newRow = document.createElement("tr");
+        //         Object.values(todo).forEach((value) => {
+        //             let cell = document.createElement("td");
+        //             cell.innerText = value;
+        //             newRow.appendChild(cell);
+        //         })
+        //         mytable.appendChild(newRow);
+        //     });
+        // }
+
+        // var table = document.createElement('table'), tr, td, row, cell;
+        //     for (row = 0; row < 10; row++) {
+        //         tr = document.createElement('tr');
+        //         for (cell = 0; cell < 22; cell++) {
+        //             td = document.createElement('td');
+        //             tr.appendChild(td);
+        //             td.innerHTML = row * 22 + cell + 1;
+        //         }
+        //         table.appendChild(tr);
+        //     }
+        //     document.getElementById('data-table').appendChild(table);
+
+        var table = document.createElement('table'), tr, td, row, cell;
+        var rowCount = table.rows.length;
+        var cellCount = table.rows[0].cell.length;
+        var row = table.insertRow(rowCount);
+        for(var i = 0; i <= cellCount; i++) {
+            var cell = tr+i;
+            cell = row.insertCell(i);
+            var copycel = document.getElementById('col'+i).innerHTML;
+            cell.innerHTML=copycel;
+            console.log(i)
+        }
+        document.getElementById('data-table').appendChild(table);
+    </script>
+</body>
+</html>

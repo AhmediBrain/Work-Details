@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Pagination Using jQuery</title>
+    <link rel="stylesheet" href="pagination.css">
+    <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="paging.js"></script>
+    <style type="text/css">
+        table {
+            background-color: #fff;
+        }
+
+        .paging-nav {
+            text-align: right;
+            padding-top: 2px;
+        }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background-color: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background-color: #187ed5;
+            font-weight: bold;
+        }
+
+        .paging-nav, #table_data {
+            width: 100%;
+            margin: 0 auto;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="ScriptTop">
+        <div class="rt-container">
+            <div class="col-rt-4" id="float_right">
+                <!-- Add Here -->
+            </div>
+        </div>
+    </div>
+
+    <header class="ScriptHeader">
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="rt-heading">
+                    <h3>jQuery Table Pagination Example</h3>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <table id="table_data" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>Frank</td>
+                                <td>Kautz</td>
+                                <td>1246</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table_data').paging({limit:5});
+        });
+    </script>
+    <script type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="drop_container">
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected"> What did Student Use? </span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li>Bathroom</li>
+                <li>Diaper</li>
+                <li class="active">What did Student Use?</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown')
+
+        dropdowns.forEach(dropdown => {
+            const select = dropdown.querySelector('.select')
+            const caret = dropdown.querySelector('.caret')
+            const menu = dropdown.querySelector('.menu')
+            const options = dropdown.querySelectorAll('.menu li')
+            const selected = dropdown.querySelector('.selected')
+
+            select.addEventListener('click', () => {
+                select.classList.toggle('select-clicked')
+                caret.classList.toggle('caret-rotate')
+                menu.classList.toggle('menu-open')
+            })
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    selected.innerText = option.innerText
+                    select.classList.remove('select-clicked')
+                    caret.classList.remove('caret-rotate')
+                    menu.classList.remove('menu-open')
+
+                    options.forEach(option => {
+                        option.classList.remove('active');
+                    });
+
+                    option.classList.add('active')
+                })
+            })
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+#myDIV {
+  width: 300px;
+  height: 300px;
+  background-color: coral;
+  color: white;
+}
+</style>
+</head>
+<body>
+<h1>Change background-color with JavaScript</h1>
+
+<p>Click the "Try it" button to set the background-color property of the DIV element to "lightblue":</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<div id="myDIV">
+  <h1>Hello</h1>
+</div>
+
+<script>
+function myFunction() {
+  document.getElementById("myDIV").style.backgroundColor = "lightblue";
+}
+</script>bgColor
+
+</body>
+</html>

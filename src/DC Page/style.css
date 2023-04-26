@@ -1,0 +1,246 @@
+/* html {
+    font-size: 75%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+} */
+/* Styles for Table */
+.scoreboardTable {
+
+    padding: 0;
+    
+    margin: auto;
+    
+    border-collapse: collapse;
+    
+    width: 80%;
+    
+    text-align: center;
+    
+    color: whitesmoke;
+    
+    }
+    
+    .scoreboardTableHeaderRow {
+    
+    color: darkorange;
+    
+    font-weight: bold;
+    
+    height: 50px;
+    
+    }
+    
+    .scoreboardTableBodyRow:nth-child(odd){background-color: rgba(128, 128, 128, 0.050);}
+    
+    #latestUserScore {
+    
+    background-color: crimson;
+    
+    }
+    
+    .scoreboardTableBodyRow:hover{
+    
+    background-color: darkorange;
+    
+    }
+    
+    .scoreboardTable tr td {
+    
+    height: 25px;
+    
+    }
+/* Styles for Table */
+body {
+    background-color: #eee;
+}
+
+section {
+    padding: 30px 5%;
+}
+
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    margin: 1%;
+}
+
+.header .banner {
+    height: auto;
+    width: 80%;
+    margin: auto;
+
+}
+
+.home {
+    display: flex;
+    align-items: justify;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    padding-top: 1rem;
+    padding-bottom: 10rem;
+}
+
+.home .content {
+    text-align: center;
+    width: 85rem;
+    background-image: url('/images/background.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 150vh;
+    z-index: -10;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 10px;
+}
+
+.text_content {
+    grid-column: 7/-1;
+}
+
+.home .container p {
+    color: #3d3c3c;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 0;
+    line-height: 1.2;
+    margin: 0px;
+    text-align: justify;
+}
+
+ul li {
+    list-style-type: none;
+    text-align: justify;
+    margin: 10px;
+}
+
+.home .container a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #0D5BBC;
+    margin: 0px;
+}
+
+.home .container a:hover {
+    color: #0D7BFF;
+    text-decoration: underline; 
+}
+
+.drop_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.dropdown {
+    min-width: 15em;
+    position: relative;
+    margin: 2em;
+}
+
+.dropdown * {
+    box-sizing: border-box;
+}
+
+.select {
+    background-color: #2a2f3b;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 2px #2a2f3b;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.select-clicked {
+    border: solid 2px #26489a;
+    box-shadow: 0 0 0.8em #26489a;
+}
+
+.select:hover {
+ background-color: #656d7d;   
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: solid 5px transparent;
+    border-top: solid 6px #ffffff;
+    transition: 0.3s;
+}
+
+.caret-rotate {
+    transform: rotate(180deg);
+}
+
+.menu {
+   list-style: none;
+   padding: 0.2em 0.5em;
+   background-color: #323741;
+   border: solid 1px #363a43; 
+   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+   border-radius: 0.5em;
+   color: #eff1f7;
+   position: absolute;
+   top: 3em;
+   left: 50%;
+   width: 100%;
+   transform: translateX(-50%);
+   opacity: 0;
+   display: none;
+   transition: 0.2s;
+   z-index: 1;
+}
+
+/* opacity: 0; display: none; */
+
+.menu li {
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: #2a2d35;
+}
+
+.active {
+    background-color: #23242a;
+}
+
+.menu-open {
+    display: block;
+    opacity: 1;
+}
+
+/* list-style: none;
+padding: 0.2em 0.5em;
+background-color: #1684fa;
+border: solid 1px #1776dc;
+box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+border-radius: 0.5em;
+color: #eff1f7;
+position: absolute;
+top: 3em;
+left: 50%;
+width: 100%;
+transform: translateX(-50%);
+opacity: 0;
+display: none;
+transition: 0.2s;
+z-index: 1; */

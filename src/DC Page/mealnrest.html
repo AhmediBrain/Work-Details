@@ -1,0 +1,238 @@
+<!-- meals & rest time -->
+        <div class="row" style="border-bottom: 1px solid;margin-bottom:10px;"><b>Meals & Rest Time</b>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h6>
+              Meal Time:
+            </h6>
+            <br>
+            <div>
+              <div id="meal_holder" class="row justify-content-start">
+                <div class="row d-block mealInput">
+                  <div class="col-sm-1">
+                    <input type="time" placeholder="meal time" 
+					class="form-control-sm attr-input mealTime_input"
+                      value="0" />
+                  </div>
+                  <div class="col-sm-10 activityInput_box">
+                    <!-- <input type="text" class="form-control-sm attr-input mealDetail_input" value=""
+                      placeholder="Meal detail" /> -->
+                    <span type="text" 
+						class="form-control input mealDetail_input activityInput_box"
+                      data-placeholder="meal detail" contenteditable></span>
+                  </div><br>
+                </div>
+
+              </div>
+              <div class="col-md-2 mt-2">
+                <input type="button" 
+				class="btn btn-primary btn-sm  print_hide" value=" + Meal"
+                  onclick="addInput('meal')" />
+              </div>
+            </div>
+
+            <br>
+            <div>
+              <p>Did the student take rest?</p>
+              <div>
+                <!-- onclick="yesRadio()" -->
+                <input type="radio" id="y" value="1" onclick="yesRadio()" />
+                <label for="y">Yes</label>
+                <!-- onclick="noRadio()" --> 
+                <input type="radio" id="n" value="0" onclick="noRadio()" />
+                <label for="n">No</label> 
+              </div>
+
+              <div id="changeYes">
+                <h6>Resting:</h6>
+              <br>
+  
+              <div>
+                <div id="rest_holder" class="row justify-content-start">
+                  <div class="row d-block restInput">
+                    <div class="col-sm-1">
+                      <input type="time" placeholder="rest time" 
+					  class="form-control-sm attr-input restTime_input"
+                        value="0" />
+                    </div>
+                    <div class="col-sm-10 activityInput_box">
+                      <!-- <input type="text" class="form-control-sm attr-input restDetail_input" value=""
+                        placeholder="Resting detail" /> -->
+                      <span type="text" 
+					  class="form-control input restDetail_input activityInput_box"
+                        data-placeholder="resting detail" contenteditable></span>
+                    </div><br>
+                  </div>
+  
+                </div>
+                <div class="col-md-2 mt-2">
+                  <input type="button" 
+				  class="btn btn-primary btn-sm  print_hide" value=" + Rest "
+                    onclick="addInput('rest')" />
+                </div>
+              </div>
+            </div>
+
+            </div>
+            <br>
+
+          </div>
+        </div>
+        </br>
+		
+		
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+<h2>Clickable Dropdown</h2>
+<p>Click on the button to open the dropdown menu.</p>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+
+<div>
+	<input type="radio" name="rest_name" id="y" 
+	  value="1" 
+	  onclick="yesRadio()" />
+	<label for="y">Yes</label>
+	<input type="radio" name="rest_name" id="n" 
+	  value="0" 
+	  onclick="noRadio()" />
+	<label for="n">No</label>
+</div>
+
+
+.over_emoji {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .over_emoji + i {
+      cursor: pointer;
+    }
+
+    .over_emoji:checked + i {
+      color: orangered;
+    }
+
+
+<tr>
+	<td style="width: 16%;">Cognitive</td>
+	<td style="width: 16%;">
+	  <label>
+		<input type="radio" name="cognitive" value="cog_angry value is: 1" class="over_emoji" />
+		<i class="bi bi-emoji-angry" 
+		  style="cursor: pointer; font-size: 30px;"></i>
+	  </label>
+	</td>
+	<td style="width: 16%;">
+	  <label>
+		<input type="radio" name="cognitive" value="cog_frown value is: 2" class="over_emoji" />
+		<i class="bi bi-emoji-frown" 
+		  style="cursor: pointer; font-size: 30px;"></i>
+	  </label>
+	</td>
+	<td style="width: 16%;">
+	  <label>
+		<input type="radio" name="cognitive" value="cog_neutral value is: 3" class="over_emoji" />
+		<i class="bi bi-emoji-neutral"  
+		  style="cursor: pointer; font-size: 30px;"></i>
+	  </label>
+	</td>
+	<td style="width: 16%;">
+	  <label>
+		<input type="radio" name="cognitive" value="cog_smile value is: 4" class="over_emoji"  />
+		<i class="bi bi-emoji-smile" 
+		  style="cursor: pointer; font-size: 30px;"></i>
+	  </label>
+	</td>
+	<td style="width: 16%;">
+	  <label>
+		<input type="radio" name="cognitive" value="cog_laugh value is: 5" class="over_emoji" />
+		<i class="bi bi-emoji-laughing" 
+		  style="cursor: pointer; font-size: 30px;"></i>
+	  </label>
+	</td>
+</tr>
+  <tr>
+	<!-- <td><button id="mood_btn">Show Mood</button></td> -->
+	<td><p id="mood_output"></p></td>
+  </tr>

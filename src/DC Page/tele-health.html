@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/2587293944.js" crossorigin="anonymous"></script>
+    <title>Tele Report</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Headline, Print, Dashboard -->
+        <div class="row border-bottom mb-3 p-2">
+            <div class="col-md-6" style="margin-top: 15px; display: flex; justify-content: space-between;">
+                <span style="padding-left: 2px; font-size: 18px; font-weight: bolder;">
+                    Session Provided via Telehealth Detail
+                </span>
+            </div>
+            <div class="col-md-6" style="margin-top: 15px;">
+                <div class="d-flex">
+                    <div class="ml-auto">
+                        <i class="fas fa-print fa-2x text-muted" 
+                            style="font-weight: bolder; margin-right: 8px;">
+                        </i>
+                        <i class="fas fa-home fa-2x text-muted" 
+                            style="font-weight: bolder;" 
+                            title="Return to Dashboard">
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Headline, Print, Dashboard -->
+
+        <!-- Date Search -->
+        <div class="row">
+            <div class="col-md-12" style="width: 60%;">
+                <form class="form-inline" style="display: flex; justify-content: space-between;">
+                    <div class="form-group mx-sm-3 mr-1 mb-2">
+                        <select class="form-control form-control-sm">
+                            <option value="">All Students</option>
+                        </select>
+                    </div>
+                    <div class="from-group mx-sm-3 mr-1 mb-2">
+                        <select class="form-control form-control-sm">
+                            <option value="">All Providers</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mr-1 mb-2">
+                        <select class="form-control form-control-sm">
+                            <option value="">All Service Types</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mr-1 mb-2">
+                        <select class="form-control form-control-sm" 
+                            id="dateRange" name="dateRange">
+                            <option value="all">All Dates</option>
+                            <option value="custom">Custom</option>
+                            <option value="today">Today</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2 ml-0" id="dateRanges">
+                        <b class="text-muted">From:</b>
+                        <input type="text" style="width: 110px;" 
+                            class="form-control-sm ml-1" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Date Search -->
+      </div>
+</body>
+</html>

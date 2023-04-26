@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JavaScript Radio Button</title>
+</head>
+<body>
+    <div>
+        <form>
+            <div>
+                <label for="fname">First Name</label>
+                <input type="text" value='' id="fname" name="firstname" placeholder="First Name" />
+            </div>
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Last Name" />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" />
+            </div>
+        </form>
+    </div>
+    <p>Select your size:</p>
+    <div>
+        <input type="radio" name="size" value="XS" id="xs">
+        <label for="xs">XS</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="S" id="s">
+        <label for="s">S</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="M" id="m">
+        <label for="m">M</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="L" id="l">
+        <label for="l">L</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="XL" id="xl">
+        <label for="xl">XL</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="XXL" id="xxl">
+        <label for="xxl">XXL</label>
+    </div>
+    <p>
+        <button id="btn">Show Selected Value</button>
+    </p>
+
+    <!-- <p id="output"></p> -->
+
+    <div class="d-flex flex-wrap mt-1 mb-1">
+        <p class="asking required">What did the student use?</p>
+        <select id="bathroomOrDiaper" name="bathroomOrDiaper" class="mb-1" onchange="bathFunction()">
+            <option value="">Select: </option>
+            <option value="bathroom">Bathroom</option>
+            <option value="diaper">Diaper</option>
+        </select>
+    </div>
+
+    <div class="d-flex flex-wrap mt-1 mb-1">
+        <input type="checkbox" id="vehicle1" name="hobbies[]" value="Bike">
+        <label> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="hobbies[]" value="Car">
+        <label> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="hobbies[]" value="Boat">
+        <label> I have a boat</label><br>
+    </div>
+
+    <div class="d-flex flex-wrap mt-1 mb-1">
+        <div>
+            <p>Do you want that?</p>
+        </div>
+        <div id="cognitive_rating">
+            <div>
+                <input type="radio" name="cognitive" value="" id="check_yes" />
+                <label>Yes</label>
+            </div>
+            <div>
+                <input type="radio" name="cognitive" value="" id="check_no" />
+                <label>No</label>
+            </div>
+        </div>
+        <div>
+            <button onclick="onCheck()">Check</button>
+        </div>
+    </div>
+
+    <script>
+        function onCheck() {
+            var radioYes = document.getElementById("check_yes")
+            var radioNo = document.getElementById("check_no")
+
+            if(radioYes.checked == true) {
+                console.log('Value is: Yes', radioYes.value)
+            } else if(radioNo.checked == true) {
+                console.log('Value is: No', radioNo.value)
+            } else {
+                alert("Please select atleast one option")
+            }
+        }
+        // const btn = document.querySelector('#btn');        
+        // const radioButtons = document.querySelectorAll('input[name="size"]');
+        // btn.addEventListener("click", () => {
+        //     let selectedSize;
+        //     for (const radioButton of radioButtons) {
+        //         if (radioButton.checked) {
+        //             selectedSize = radioButton.value;
+        //             break;
+        //         }
+        //     }
+        //     // show the output:
+        //     output.innerText = selectedSize ? `You selected ${selectedSize}` : `You haven't selected any size`;
+        // });
+
+        const radioButtons = document.querySelectorAll('input[name="size"]');
+        for(const radioButton of radioButtons) {
+            radioButton.addEventListener('change', showSelected);
+        }
+
+        function showSelected(e) {
+            //console.log(e);
+            if(this.checked) {
+                document.querySelector('#output').innerText = `You selected ${this.value}`
+            }
+        }
+
+        // Collecting form data
+        let fName = document.getElementById('fname').value
+        console.log('First Name is: ', fName)
+
+        let lName = document.getElementById('lname').value
+        lName.onchange = function(e) {
+            e.target.value;
+        }
+
+        console.log(lName)
+
+        let bathroomOrdiaper = document.querySelector('#bathroomOrDiaper').value
+        console.log(bathroomOrdiaper)
+
+        let hobbies = []
+        let checkBoxes = document.getElementsByName('hobbies[]')
+        for(let i = 0; i < checkBoxes.length; i++) {
+            if(checkBoxes[i].checked) {
+               hobbies.push(checkBoxes[i].value) 
+            }
+        }
+        console.log(hobbies)
+
+        function bathFunction() {
+            let x = document.getElementById('bathroomOrDiaper').value;
+            document.getElementById('output').x
+            console.log(x)
+        }
+
+    </script>
+</body>
+</html>

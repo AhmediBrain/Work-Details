@@ -1,0 +1,885 @@
+<style>
+    header {
+        background-color: #005cbf;
+    }
+
+    .navbar-collapse {
+        background-color: #007bff;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-right: 20px;
+        margin-top: -12px;
+        margin-bottom: -12px;
+    }
+
+    .logo_link {
+
+        text-decoration: none;
+    }
+
+    #main_nav .col {
+        text-align: center;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+    }
+
+    .logo_link {
+        color: white;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .badge {
+        background-color: #007bff;
+    }
+
+    label {
+        font-weight: bolder;
+        font-size: medium;
+    }
+
+    .required::before {
+        content: "* ";
+        color: red;
+    }
+
+    .mask {
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        font-size: larger;
+        background-color: whitesmoke;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        min-width: 200px;
+        min-height: 300px;
+    }
+
+    .missTip {
+        border: 1px solid red
+    }
+
+    .asking {
+        font-size: 15px;
+        color: #007bff;
+        margin: 0px;
+        font-weight: bold;
+    }
+
+    #wheelStatus {
+        width: auto;
+        height: auto;
+        display: none;
+        padding: 2px;
+        margin: 2px;
+    }
+</style>
+
+
+<body>
+    <div class="align-items-center mask">
+        <p style="font-size: 5vw;display: inline-block;">Report submitting...</p>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="d-flex align-items-center">
+            <img src="images/wheelchair.png" alt="Chair" width="120rem" height="80rem">
+            <div class="fs-2 mx-2">
+                <p>Wheel Chair Check</p>
+            </div>
+            <img src="images/iBrainLogo.png" alt="logo" width="100rem" height="40rem">
+        </div>
+
+        <form id="wheelChairCheckForm" name="wheelChairCheckForm" autocomplete="off">
+
+
+            <div class="alert alert-success" id="alert-panel" style="display:none"></div>
+
+            <div class="col-md-10 d-flex flex-wrap justify-content-between mb-3">
+                <div id="header_student_container" class="col-md-3 mb-2 required">
+                    <label for="attendance_date_input">Choose Student</label>
+
+                    <select class="form-control form-select-sm " list="nameList" id='nameList'>
+                        <option value="">Please select:</option>
+                    </select>
+
+                    <!-- <input id="student_id_input" type="hidden" /> -->
+
+                </div>
+
+                <div class="col-md-2 mb-2 required">
+                    <label for="check_date_input">Date</label>
+                    <input type="date" class="form-control form-control-sm hasDatepicker " id="check_date_input"
+                        name="check_date_input" value="" placeholder="mm/dd/yyyy" style="width: 130px">
+                </div>
+
+
+                <div class="col-md-2 mb-2 required">
+                    <label for="attendance_time_in_input">Check Time</label>
+                    <input class="form-control form-control-sm mr-2 " id="check_time_input" name="check_time_input"
+                        type="time" value="14:23" style="width: 130px">
+                </div>
+                <!-- <div id="providers_container" class="col-md-3 mb-2">
+                        <label>Report by: (ctrl+click for multiple):</label>
+                        <select class="form-control form-select" name="provider_email_input" id="provider_email_input" multiple 
+                            required>
+
+                        </select>
+                    </div> -->
+            </div>
+
+            <!-- Wheel Chair Use Question -->
+            <div style="margin-bottom: 20px;">
+                <p class="asking">Does The Student Use Wheel Chair?</p>
+                <div>
+                    <input type="radio" 
+                        id="y" value="1" 
+                        name="wheel" 
+                        onclick="addWheel()" />
+                    <label for="y">Yes</label>
+                    <input type="radio" 
+                        id="n" value="1" 
+                        name="wheel" 
+                        onclick="cancelWheel()" />
+                    <label for="n">No</label>
+                </div>
+            </div>
+            <div id="wheelStatus">
+                <div class="form-group col-sm-12 mb-3">
+                    <label for="attendance_time_in_input"><strong>Problems?</strong></label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="problemCheck" id="yesPro" value="yes">
+                        <label class="form-check-label" class='mb-1' for="yesPro">
+                            <p>Yes, it has some problems</p>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input " type="radio" name="problemCheck" id="noPro" value="no" checked>
+                        <label class="form-check-label" for="noPro">
+                            <p> No, it is in good condition</p>
+                        </label>
+                    </div>
+    
+                    <div class="d-flex justify-content-between flex-wrap problemBox col-sm-10" style="display: none;">
+                        <fieldset class="mt-3 mx-3">
+                            <legend><small>Damage</small></legend>
+                            <div class="" id="damage-container">
+                                <input type="checkbox" value="dents" class="damageInputCheck" />
+                                <label for="dents">dents</label><br>
+                                <input type="checkbox" value="cracks" class="damageInputCheck" />
+                                <label for="cracks">cracks</label><br>
+                                <input type="checkbox" value="wraped tires" class="damageInputCheck" />
+                                <label for="warped tires">warped tires</label><br>
+                                <input type="checkbox" value="tears in fabric" class="damageInputCheck" />
+                                <label for="tears">tears in fabric</label><br>
+                                <input type="text" id="damage_input" placeholder="other damage" name="damage_input"
+                                    class="damageInput" /><br>
+                                <div id="damage_extra_input">
+    
+                                </div>
+                            </div>
+    
+                            <button type="button" id="damageAdd" onclick="addInput('damage')">+</button>
+                            <br>
+                            <label for="tears">Comment:</label><br>
+                            <textarea name="damage_comment" id="damage_comment" rows="3"
+                                placeholder="Comment for Damage"></textarea>
+    
+                        </fieldset>
+                        <fieldset class="mt-3 mx-3">
+                            <legend><small>Missing component</small></legend>
+                            <div id="missCom-container">
+                                <input type="checkbox" value="head rest" class="missComInputCheck" />
+                                <label for="Head rest">head rest</label><br>
+                                <input type="checkbox" value="cracks" class="missComInputCheck" />
+                                <label for="cracks">proper cushioning</label><br>
+                                <input type="checkbox" value="wraped tires" class="missComInputCheck" />
+                                <label for="harness">harness</label><br>
+                                <input type="checkbox" value="foot plates" class="missComInputCheck" />
+                                <label for="foot plates">foot plates</label><br>
+                                <input type="checkbox" value="brakes" class="missComInputCheck" />
+                                <label for="brakes">brakes</label><br>
+                                <input type="checkbox" value="seat belts" class="missComInputCheck" />
+                                <label for="seat belts">seat belts</label><br>
+                                <input type="checkbox" value="buckles" class="missComInputCheck" />
+                                <label for="buckles">buckles</label><br>
+                                <input type="text" id="missCom_input" placeholder="other missing component"
+                                    name="missCom_input" class="missComInput" /><br>
+                                <div id="missCom_extra_input">
+    
+                                </div>
+                            </div>
+    
+                            <button type="button" id="missComAdd" onclick="addInput('missCom')">+</button>
+                            <br>
+                            <label for="tears">Comment:</label><br>
+                            <textarea name="misCom_comment" id="missCom_comment" rows="3"
+                                placeholder="Comment for Missing Components"></textarea>
+    
+                        </fieldset>
+                        <fieldset class="mt-3 mx-3">
+                            <legend><small>Safety</small></legend>
+                            <p>Check following components <b>NOT</b> functioning properly </p>
+                            <div id="safty-container">
+                                <input type="checkbox" value="head rest" class="saftyInputCheck" />
+                                <label for="Head rest">head rest</label><br>
+                                <input type="checkbox" value="cracks" class="saftyInputCheck" />
+                                <label for="cracks">proper cushioning</label><br>
+                                <input type="checkbox" value="wraped tires" class="saftyInputCheck" />
+                                <label for="harness">harness</label><br>
+                                <input type="checkbox" value="foot plates" class="saftyInputCheck" />
+                                <label for="foot plates">foot plates</label><br>
+                                <input type="checkbox" value="brakes" class="saftyInputCheck" />
+                                <label for="brakes">brakes</label><br>
+                                <input type="checkbox" value="seat belts" class="saftyInputCheck" />
+                                <label for="seat belts">seat belts</label><br>
+                                <input type="checkbox" value="buckles" class="saftyInputCheck" />
+                                <label for="buckles">buckles</label><br>
+                                <input type="text" id="safty_input" placeholder="other component not function"
+                                    name="safty_input" class="saftyInput" /><br>
+                                <div id="safty_extra_input">
+    
+                                </div>
+    
+    
+                            </div>
+                            <button type="button" id="safeAdd" onclick="addInput('safe')">+</button>
+                            <br>
+                            <label for="tears">Comment:</label><br>
+                            <textarea name="safty_comment" id="safty_comment" rows="3"
+                                placeholder="Comment for Safty"></textarea>
+    
+    
+                        </fieldset>
+                        <fieldset class="mt-3 mx-3">
+                            <legend><small>Sanitary</small></legend>
+    
+                            <div id="sanitary-container">
+                                <input type="checkbox" value="soiled" class="sanitaryInputCheck" />
+                                <label for="soiled">soiled</label><br>
+                                <input type="checkbox" value="odor" class="sanitaryInputCheck" />
+                                <label for="odor">odor</label><br>
+                                <input type="checkbox" value="unkept" class="sanitaryInputCheck" />
+                                <label for="unkept">unkept</label><br>
+    
+                                <input type="text" id="sanitary_input" placeholder="other sanitary issue"
+                                    name="sanitary_input" class="sanitaryInput" /><br>
+                                <div id="sanitary_extra_input">
+    
+                                </div>
+    
+    
+                            </div>
+                            <button type="button" id="sanityAdd" onclick="addInput('sanitary')">+</button>
+                            <br>
+                            <label for="tears">Comment:</label><br>
+                            <textarea name="sanitary_comment" id="sanitary_comment" rows="3"
+                                placeholder="Comment for Sanitary"></textarea>
+    
+                        </fieldset>
+                    </div>    
+                </div>
+    
+                <div class="row mt-3 mb-5">
+                    <div class="col-sm-10">
+                        <label for="tears">Comment from Para/Therapist :</label><br>
+                        <textarea type="hidden" id="comment_nurse_input" name="comment_nurse_input" rows="3"
+                            style="width:100% ;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Wheel Chair Use Question -->
+
+            <!-- <div class="form-group col-sm-12 mb-3">
+                <label for="attendance_time_in_input"><strong>Problems?</strong></label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="problemCheck" id="yesPro" value="yes">
+                    <label class="form-check-label" class='mb-1' for="yesPro">
+                        <p>Yes, it has some problems</p>
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input " type="radio" name="problemCheck" id="noPro" value="no" checked>
+                    <label class="form-check-label" for="noPro">
+                        <p> No, it is in good condition</p>
+                    </label>
+                </div>
+
+                <div class="d-flex justify-content-between flex-wrap problemBox col-sm-10" style="display: none;">
+                    <fieldset class="mt-3 mx-3">
+                        <legend><small>Damage</small></legend>
+                        <div class="" id="damage-container">
+                            <input type="checkbox" value="dents" class="damageInputCheck" />
+                            <label for="dents">dents</label><br>
+                            <input type="checkbox" value="cracks" class="damageInputCheck" />
+                            <label for="cracks">cracks</label><br>
+                            <input type="checkbox" value="wraped tires" class="damageInputCheck" />
+                            <label for="warped tires">warped tires</label><br>
+                            <input type="checkbox" value="tears in fabric" class="damageInputCheck" />
+                            <label for="tears">tears in fabric</label><br>
+                            <input type="text" id="damage_input" placeholder="other damage" name="damage_input"
+                                class="damageInput" /><br>
+                            <div id="damage_extra_input">
+
+                            </div>
+                        </div>
+
+                        <button type="button" id="damageAdd" onclick="addInput('damage')">+</button>
+                        <br>
+                        <label for="tears">Comment:</label><br>
+                        <textarea name="damage_comment" id="damage_comment" rows="3"
+                            placeholder="Comment for Damage"></textarea>
+
+                    </fieldset>
+                    <fieldset class="mt-3 mx-3">
+                        <legend><small>Missing component</small></legend>
+                        <div id="missCom-container">
+                            <input type="checkbox" value="head rest" class="missComInputCheck" />
+                            <label for="Head rest">head rest</label><br>
+                            <input type="checkbox" value="cracks" class="missComInputCheck" />
+                            <label for="cracks">proper cushioning</label><br>
+                            <input type="checkbox" value="wraped tires" class="missComInputCheck" />
+                            <label for="harness">harness</label><br>
+                            <input type="checkbox" value="foot plates" class="missComInputCheck" />
+                            <label for="foot plates">foot plates</label><br>
+                            <input type="checkbox" value="brakes" class="missComInputCheck" />
+                            <label for="brakes">brakes</label><br>
+                            <input type="checkbox" value="seat belts" class="missComInputCheck" />
+                            <label for="seat belts">seat belts</label><br>
+                            <input type="checkbox" value="buckles" class="missComInputCheck" />
+                            <label for="buckles">buckles</label><br>
+                            <input type="text" id="missCom_input" placeholder="other missing component"
+                                name="missCom_input" class="missComInput" /><br>
+                            <div id="missCom_extra_input">
+
+                            </div>
+                        </div>
+
+                        <button type="button" id="missComAdd" onclick="addInput('missCom')">+</button>
+                        <br>
+                        <label for="tears">Comment:</label><br>
+                        <textarea name="misCom_comment" id="missCom_comment" rows="3"
+                            placeholder="Comment for Missing Components"></textarea>
+
+                    </fieldset>
+                    <fieldset class="mt-3 mx-3">
+                        <legend><small>Safety</small></legend>
+                        <p>Check following components <b>NOT</b> functioning properly </p>
+                        <div id="safty-container">
+                            <input type="checkbox" value="head rest" class="saftyInputCheck" />
+                            <label for="Head rest">head rest</label><br>
+                            <input type="checkbox" value="cracks" class="saftyInputCheck" />
+                            <label for="cracks">proper cushioning</label><br>
+                            <input type="checkbox" value="wraped tires" class="saftyInputCheck" />
+                            <label for="harness">harness</label><br>
+                            <input type="checkbox" value="foot plates" class="saftyInputCheck" />
+                            <label for="foot plates">foot plates</label><br>
+                            <input type="checkbox" value="brakes" class="saftyInputCheck" />
+                            <label for="brakes">brakes</label><br>
+                            <input type="checkbox" value="seat belts" class="saftyInputCheck" />
+                            <label for="seat belts">seat belts</label><br>
+                            <input type="checkbox" value="buckles" class="saftyInputCheck" />
+                            <label for="buckles">buckles</label><br>
+                            <input type="text" id="safty_input" placeholder="other component not function"
+                                name="safty_input" class="saftyInput" /><br>
+                            <div id="safty_extra_input">
+
+                            </div>
+
+
+                        </div>
+                        <button type="button" id="safeAdd" onclick="addInput('safe')">+</button>
+                        <br>
+                        <label for="tears">Comment:</label><br>
+                        <textarea name="safty_comment" id="safty_comment" rows="3"
+                            placeholder="Comment for Safty"></textarea>
+
+
+                    </fieldset>
+                    <fieldset class="mt-3 mx-3">
+                        <legend><small>Sanitary</small></legend>
+
+                        <div id="sanitary-container">
+                            <input type="checkbox" value="soiled" class="sanitaryInputCheck" />
+                            <label for="soiled">soiled</label><br>
+                            <input type="checkbox" value="odor" class="sanitaryInputCheck" />
+                            <label for="odor">odor</label><br>
+                            <input type="checkbox" value="unkept" class="sanitaryInputCheck" />
+                            <label for="unkept">unkept</label><br>
+
+                            <input type="text" id="sanitary_input" placeholder="other sanitary issue"
+                                name="sanitary_input" class="sanitaryInput" /><br>
+                            <div id="sanitary_extra_input">
+
+                            </div>
+
+
+                        </div>
+                        <button type="button" id="sanityAdd" onclick="addInput('sanitary')">+</button>
+                        <br>
+                        <label for="tears">Comment:</label><br>
+                        <textarea name="sanitary_comment" id="sanitary_comment" rows="3"
+                            placeholder="Comment for Sanitary"></textarea>
+
+                    </fieldset>
+                </div>
+
+
+
+            </div>
+
+            <div class="row mt-3 mb-5">
+                <div class="col-sm-10">
+                    <label for="tears">Comment from Para/Therapist :</label><br>
+                    <textarea type="hidden" id="comment_nurse_input" name="comment_nurse_input" rows="3"
+                        style="width:100% ;"></textarea>
+                </div>
+            </div> -->
+
+
+            <div class="alert alert-danger" id="missingAlertTip"
+                style="display: none; margin-top: 1%; margin-left: 10%; margin-right: 10%;">
+                Ops...Please check any required content missing!
+            </div>
+            <div class="row mt-3 mb-5">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button class="btn btn-primary btn-sm" id="addwheelChairCheckBtn"><i class="bi bi-plus-square"></i>
+                        &nbsp;Submit Check Report</button> &nbsp; <a href="javascript:void(0);"
+                        id="view_reportsBtn">View
+                        Wheel Chair Report</a>
+                    <input type="hidden" id="student_id_input" name="student_id_input">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="min-height: 100px;"></div>
+
+</body>
+<script>
+
+    function addWheel() {
+        document.getElementById('wheelStatus').style.minHeight = '200px'
+        document.getElementById('wheelStatus').style.display = 'block'
+    }
+
+    function cancelWheel() {
+        document.getElementById('wheelStatus').style.display = 'none'
+    }
+
+    $(document).ready(function () {
+        // $(".problemBox").hide();
+        //parse date and time, and prefill date and time 
+        $(".mask").hide();
+        const [date, time] = formatDate(new Date()).split(' ');
+        const dateInput = document.getElementById('check_date_input');
+        dateInput.value = date;
+
+        const timeInput = document.getElementById('check_time_input');
+        timeInput.value = time;
+
+        let nameList = [];
+        $.ajax({
+            type: "POST",
+            url: "php/fetch_student_names.php",
+            success: function (response) {
+                
+                var students = JSON.parse(response);
+                for (var student of students) {
+                    var student_name = student['student_fname'] + " " + student['student_lname'];
+                    nameList.push(student_name);
+
+                    $("#nameList").append($(`<option value=${student['student_id']}></option>`).text(student['student_fname'] + "    " + student['student_lname']));
+                    // $("#student_id_input").val(student['student_id']);
+                }
+            }
+        });
+    });
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+    function formatDate(date) {
+        return (
+            [
+                date.getFullYear(),
+                padTo2Digits(date.getMonth() + 1),
+                padTo2Digits(date.getDate()),
+            ].join('-') +
+            ' ' +
+            [
+                padTo2Digits(date.getHours()),
+                padTo2Digits(date.getMinutes()),
+
+            ].join(':')
+        );
+    }
+
+    $("#nameList").change(function (e) {
+        e.preventDefault();
+        $("#student_id_input").val(e.target.value);
+       
+    })
+
+    function addInput(val) {
+        if (val == 'damage') {
+
+            let damageInputArr = document.querySelectorAll('.damageInput');
+            let addedOn = damageInputArr.length + 1;
+            $("#damage_extra_input").append(`<div id='damageInput_${addedOn}'><input type='text'  class='damageInput' name='damageInput_${addedOn}'/><button type='button' class='damageRevBtn' id='damageRevBtn_${addedOn}'>-</button><br></div>`);
+
+        }
+        if (val == 'missCom') {
+            let missComInputArr = document.querySelectorAll('.missComInput');
+            let addedOn = missComInputArr.length + 1;
+            $("#missCom_extra_input").append(`<div id='missComInput_${addedOn}'><input type='text'  class='missComInput' name='missComInput_${addedOn}'/><button type='button' class='missComRevBtn' id='missComRevBtn_${addedOn}'>-</button><br></div>`);
+
+        }
+        if (val == 'safe') {
+            let saftyInputArr = document.querySelectorAll('.saftyInput');
+            let addedOn = saftyInputArr.length + 1;
+            $("#safty_extra_input").append(`<div id='saftyInput_${addedOn}'><input type='text' class='saftyInput' name='saftyInput_${addedOn}'/><button type='button' class='saftyRevBtn' id='saftyRevBtn_${addedOn}'>-</button><br></div>`)
+        }
+        if (val == 'sanitary') {
+            let sanitaryInputArr = document.querySelectorAll('.sanitaryInput');
+            let addedOn = sanitaryInputArr.length + 1;
+            $("#sanitary_extra_input").append(`<div id='sanitaryInput_${addedOn}'><input type='text' class='sanitaryInput' name='sanitaryInput_${addedOn}'/><button type='button' class='sanitaryRevBtn' id='sanitaryRevBtn_${addedOn}'>-</button><br></div>`)
+        }
+    }
+
+    $("#damage_extra_input").on('click', ".damageRevBtn", function (e) {
+        e.preventDefault();
+        let inputRev = e.target.id;
+        let index = inputRev.split('_')[1];
+        $('#' + 'damageInput_' + index).remove();
+
+
+    })
+    $("#missCom_extra_input").on('click', ".missComRevBtn", function (e) {
+        e.preventDefault();
+
+        let index = e.target.id.split("_")[1];
+        let inputRev = 'missComInput_' + index;
+        $("#" + inputRev).remove();
+
+
+    })
+    $("#safty_extra_input").on('click', ".saftyRevBtn", function (e) {
+        e.preventDefault();
+
+        let index = e.target.id.split("_")[1];
+        let inputRev = 'saftyInput_' + index;
+        $("#" + inputRev).remove();
+
+
+    })
+    $("#sanitary_extra_input").on('click', ".sanitaryRevBtn", function (e) {
+        e.preventDefault();
+
+        let index = e.target.id.split("_")[1];
+        let inputRev = 'sanitaryInput_' + index;
+        $("#" + inputRev).remove();
+
+
+    })
+
+    $('#addwheelChairCheckBtn').click(function (e) {
+        e.preventDefault();
+
+        //================collect damageInput
+        let timeStamp = new Date().getTime();
+        let check_id = "chairCheck_" + timeStamp;
+        let damageInputStr = '';
+        let doneDamage = 0;
+        let doneMissCom = 0;
+        let doneSafty = 0;
+        let doneSanitary = 0;
+
+        let damageInputCheckArr = document.querySelectorAll('.damageInputCheck');
+        damageInputCheckArr.forEach(ele => {
+
+            if (ele.checked == true) {
+                damageInputStr = damageInputStr + ele.value + ';';
+            }
+        });
+        let damageInputArr = document.querySelectorAll('.damageInput');
+        damageInputArr.forEach(ele => {
+
+            if (ele.value != '') {
+                damageInputStr = damageInputStr + ele.value + ';';
+            }
+        });
+
+        let commnetOfdamage = $("#damage_comment").val();
+        if (damageInputStr != '') {
+            let problem = {
+                problem_id: "damagePro_" + timeStamp,
+                check_id: check_id,
+                problem_name: "damage",
+                problem_detail: damageInputStr,
+                problem_comment: commnetOfdamage
+            }
+            // console.log(problem);
+            $.ajax({
+                type: 'POST',
+                url: 'php/add_chair_problem.php',
+                data: problem,
+                success: function (res) {
+                    doneDamage = 1;
+                },
+                error: function (res) {
+                    doneDamage = 0;
+                    alert('error!', res);
+                }
+            })
+        }
+        // console.log(damageInputStr, ' str');
+
+        //================collect missComInput
+        let missComInputStr = '';
+
+        let missComInputCheckArr = document.querySelectorAll('.missComInputCheck');
+        missComInputCheckArr.forEach(ele => {
+
+            if (ele.checked == true) {
+                missComInputStr = missComInputStr + ele.value + ';';
+            }
+        });
+        let missComInputArr = document.querySelectorAll('.missComInput');
+        missComInputArr.forEach(ele => {
+
+            if (ele.value != '') {
+                missComInputStr = missComInputStr + ele.value + ';';
+            }
+        });
+
+        let commnetOfMissCom = $("#missCom_comment").val();
+        if (missComInputStr != '') {
+            let problem = {
+                problem_id: "missComPro_" + timeStamp,
+                check_id: check_id,
+                problem_name: "missing component",
+                problem_detail: missComInputStr,
+                problem_comment: commnetOfMissCom
+            }
+            console.log(problem);
+            $.ajax({
+                type: 'POST',
+                url: 'php/add_chair_problem.php',
+                data: problem,
+                success: function (res) {
+                    doneMissCom = 1;
+                },
+                error: function (res) {
+                    doneMissCom = 0;
+                    alert('error!', res);
+                }
+            })
+        }
+
+        //================collect saftyComInput
+        let saftyInputStr = '';
+
+        let saftyInputCheckArr = document.querySelectorAll('.saftyInputCheck');
+        saftyInputCheckArr.forEach(ele => {
+
+            if (ele.checked == true) {
+                saftyInputStr = saftyInputStr + ele.value + ';';
+            }
+        });
+        let saftyInputArr = document.querySelectorAll('.saftyInput');
+        saftyInputArr.forEach(ele => {
+
+            if (ele.value != '') {
+                saftyInputStr = saftyInputStr + ele.value + ';';
+            }
+        });
+
+        let commnetOfsafty = $("#safty_comment").val();
+        if (saftyInputStr != '') {
+            let problem = {
+                problem_id: "saftyPro_" + timeStamp,
+                check_id: check_id,
+                problem_name: "safty",
+                problem_detail: saftyInputStr,
+                problem_comment: commnetOfsafty
+            }
+            // console.log(problem);
+            $.ajax({
+                type: 'POST',
+                url: 'php/add_chair_problem.php',
+                data: problem,
+                success: function (res) {
+                    doneSafty = 1
+                },
+                error: function (res) {
+                    doneSafty = 0
+                    alert('error!', res);
+                }
+            })
+        }
+        //================collect saftyComInput
+        let sanitaryInputStr = '';
+
+        let sanitaryInputCheckArr = document.querySelectorAll('.sanitaryInputCheck');
+        sanitaryInputCheckArr.forEach(ele => {
+
+            if (ele.checked == true) {
+                sanitaryInputStr = sanitaryInputStr + ele.value + ';';
+            }
+        });
+        let sanitaryInputArr = document.querySelectorAll('.sanitaryInput');
+        sanitaryInputArr.forEach(ele => {
+
+            if (ele.value != '') {
+                sanitaryInputStr = sanitaryInputStr + ele.value + ';';
+            }
+        });
+
+        let commnetOfsanitary = $("#sanitary_comment").val();
+        if (sanitaryInputStr != '') {
+            let problem = {
+                problem_id: "sanitaryPro_" + timeStamp,
+                check_id: check_id,
+                problem_name: "sanitary",
+                problem_detail: sanitaryInputStr,
+                problem_comment: commnetOfsanitary
+            }
+            // console.log(problem);
+            $.ajax({
+                type: 'POST',
+                url: 'php/add_chair_problem.php',
+                data: problem,
+                success: function (res) {
+                    doneSanitary = 1;
+                },
+                error: function (res) {
+                    doneSanitary = 0;
+                    alert('error!', res);
+                }
+            })
+        }
+        let is_problems = null;
+        if (damageInputStr == '' && missComInputStr == '' && saftyInputStr == '' && sanitaryInputStr == '') {
+            is_problems = 0;
+            $("#yesPro").prop('checked', false);
+            $("#noPro").prop('checked', true);
+        } else {
+            is_problems = 1;
+            $("#yesPro").prop('checked', true);
+            $("#noPro").prop('checked', false);
+        }
+        let sid = $("#student_id_input").val();
+        let cdi = $("#check_date_input").val();
+        let cti = $("#check_time_input").val();
+        if (sid == '' || cdi == '' || cti == '') {
+            $("#missingAlertTip").show();
+            var missingAlert = document.querySelectorAll('.required');
+            missingAlert.forEach(function (e) {
+
+                if ($(e).val() == "") {
+                    $(e).addClass("missTip");
+                    setTimeout(function () {
+                        $("#missingAlertTip").hide();
+                        $(e).removeClass("missTip");
+                    }, 3000);
+                }
+            })
+
+
+        } else {
+            $(".mask").show();
+            console.log("yerrrrrrrrr")
+            let newReport = {};
+            if($("#n").val() === '1'){
+                console.log("no")
+                newReport = {
+                check_id: check_id,
+                student_id: $("#student_id_input").val(),
+                report_date: $("#check_date_input").val(),
+                report_time: $("#check_time_input").val(),
+                is_problems:"",
+                nurse_comment: "student does not use a wheelchair"
+
+                }
+                console.log(newReport)
+                return newReport;
+            }else{
+                newReport = {
+                check_id: check_id,
+                student_id: $("#student_id_input").val(),
+                report_date: $("#check_date_input").val(),
+                report_time: $("#check_time_input").val(),
+                is_problems: is_problems,
+                nurse_comment: $("#comment_nurse_input").val()
+                }
+                console.log(newReport)
+                return newReport;
+            }
+            console.log(newReport)
+            $.ajax({
+                type: "POST",
+                url: 'php/add_wheel_chair_check_report.php',
+                data: newReport,
+                success: function (res) {
+                    //==========clean data
+                    $("#nameList").val('');
+                    $("#student_id_input").val('');
+                    //reset default date and  time
+                    const [date, time] = formatDate(new Date()).split(' ');
+                    const dateInput = document.getElementById('check_date_input');
+                    dateInput.value = date;
+
+                    const timeInput = document.getElementById('check_time_input');
+                    timeInput.value = time;
+                    //reset no problem
+                    $("#yesPro").prop('checked', false);
+                    $("#noPro").prop('checked', true);
+
+                    //reset damage
+                    damageInputCheckArr.forEach(ele =>  $(ele).prop('checked', false));
+                    damageInputArr.forEach(ele => $(ele).val(''));
+                    $("#damage_comment").val('');
+
+                    //reset missing component
+                    missComInputCheckArr.forEach(ele => $(ele).prop('checked', false));
+                    missComInputArr.forEach(ele => $(ele).val(''));
+                    $("#missCom_comment").val('');
+
+                    //reset safty
+                    saftyInputCheckArr.forEach(ele => $(ele).prop('checked', false));
+                    saftyInputArr.forEach(ele => $(ele).val(''));
+                    $("#safty_comment").val('');
+
+                    //reset sanitary
+                    sanitaryInputCheckArr.forEach(ele => $(ele).prop('checked', false));
+                    sanitaryInputArr.forEach(ele => $(ele).val(''));
+                    $("#sanitary_comment").val('');
+
+                    //reset nurse comment
+                    $("#comment_nurse_input").val('');
+
+                    $(".mask").hide();
+                    alert("Check report submitted successfully!");
+                    location.reload();
+                },
+                error: function (res) {
+                    $(".mask").hide();
+                    alert("Something went wrong..");
+                }
+            })
+
+        }
+
+
+
+    })
+
+    $("#view_reportsBtn").click(function () {
+        $("#main_container").empty();
+        $("#main_container").load("viewWheelChairReport.html");
+    })
+
+</script>
