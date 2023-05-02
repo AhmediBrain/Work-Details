@@ -1,5 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Ag Grid Enterprise</title>
+
+    <style>
+        td, th {
+            padding: 5px;
+        }
+
+        th {
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  
+  <body>
+    <div>
+        <table id="catTable" class="table table-bordered">
+            <thead>
+              <tr>
+                <th data-sort="name">User ID</th>
+                <th data-sort="age">ID</th>
+                <th data-sort="breed">Title</th>
+                <th data-sort="gender">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="4"><i>Loading...</i></td></tr>
+            </tbody>
+          </table>
+          
+          <div style="display: flex; justify-content: space-evenly;">
+            <button id="prevButton">Previous</button> 
+            <button id="nextButton">Next</button>
+          </div>
+    </div>
+  </body>
+  <script>
+
+document.addEventListener('DOMContentLoaded', init, false);
+
+let data, table, sortCol;
+let sortAsc = false;
+const pageSize = 3;
+let curPage = 1;
+
+async function init() {
+  
+  // Select the table (well, tbody)
+  table = document.querySelector('#catTable tbody');
+  // get the cats
+  // https://jsonplaceholder.typicode.com/todos
+  // https://www.raymondcamden.com/.netlify/functions/get-cats
+  let resp = await fetch('https://jsonplaceholder.typicode.com/todos');
+  data = await resp.json();
+  console.log(data)
+  renderTable();
+  
+  // listen for sort clicks
+  document.querySelectorAll('#catTable thead tr th').forEach(t => {
+     t.addEventListener('click', sort, false);
+  });
+  
+  document.querySelector('#nextButton').addEventListener('click', nextPage, false);
+  document.querySelector('#prevButton').addEventListener('click', previousPage, false);
+}
+
+function renderTable() {
+  // create html
+  let result = '';
+  data.filter((row, index) => {
+        let start = (curPage-1)*pageSize;
+        let end =curPage*pageSize;
+        if(index >= start && index < end) return true;
+  }).forEach(c => {
+     result += `<tr>
+     <td>${c.userId}</td>
+     <td>${c.id}</td>
+     <td>${c.title}</td>
+     <td>${c.completed}</td>
+     </tr>`;
+  });
+  table.innerHTML = result;
+}
+
+function sort(e) {
+  let thisSort = e.target.dataset.sort;
+  if(sortCol === thisSort) sortAsc = !sortAsc;
+  sortCol = thisSort;
+  console.log('sort dir is ', sortAsc);
+  data.sort((a, b) => {
+    if(a[sortCol] < b[sortCol]) return sortAsc?1:-1;
+    if(a[sortCol] > b[sortCol]) return sortAsc?-1:1;
+    return 0;
+  });
+  renderTable();
+}
+
+function previousPage() {
+  if(curPage > 1) curPage--;
+  renderTable();
+}
+
+function nextPage() {
+  if((curPage * pageSize) < data.length) curPage++;
+  renderTable();
+}
+
+// This Week Function
+const today = new Date();
+const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 1));
+const lastDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 7));
+
+const startDate = `${firstDayOfWeek.getMonth() + 1}/${firstDayOfWeek.getDate()}/${firstDayOfWeek.getFullYear()}`;
+const endDate = `${lastDayOfWeek.getMonth() + 1}/${lastDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}`;
+
+console.log(`This week's date range is ${startDate} - ${endDate}`);
+// This Week Function
+
+// Last Week Function
+// get today's date
+const lToday = new Date();
+
+// calculate the date 7 days ago
+const lastWeek = new Date(lToday.getFullYear(), lToday.getMonth(), lToday.getDate() - 7);
+
+// get the start date of last week (last Monday)
+const lastWeekStart = new Date(lastWeek.getFullYear(), lastWeek.getMonth(), lastWeek.getDate() - lastWeek.getDay() + 1);
+
+// get the end date of last week (last Sunday)
+const lastWeekEnd = new Date(lastWeek.getFullYear(), lastWeek.getMonth(), lastWeek.getDate() - lastWeek.getDay() + 7);
+
+// format the dates as strings (in YYYY-MM-DD format)
+const lastWeekStartStr = lastWeekStart.toISOString().slice(0, 10);
+const lastWeekEndStr = lastWeekEnd.toISOString().slice(0, 10);
+
+console.log("Last week's start date:", lastWeekStartStr);
+console.log("Last week's end date:", lastWeekEndStr);
+// Last Week Function
+
+// Yesterday Function
+const yToday = new Date();
+const yesterday = new Date(yToday);
+yesterday.setDate(yesterday.getDate() - 1);
+
+console.log('YesterDay was: ', yesterday);
+// Yesterday Function
+
+// This Month Function
+// Get today's date
+const tMtoday = new Date();
+
+// Get the start date of the current month
+const startOfMonth = new Date(tMtoday.getFullYear(), tMtoday.getMonth(), 1);
+
+// Format the dates as strings (optional)
+const todayStr = tMtoday.toISOString().substr(0, 10); // YYYY-MM-DD
+const startOfMonthStr = startOfMonth.toISOString().substr(0, 10); // YYYY-MM-DD
+
+console.log("Today's date:", todayStr);
+console.log("Start of the month:", startOfMonthStr);
+// This Month Function
+
+// Last Month Function
+const lMtoday = new Date();
+const lastMonth = new Date(lMtoday.getFullYear(), lMtoday.getMonth() - 1, 1);
+const firstDay = new Date(lastMonth.getFullYear(), lastMonth.getMonth(), 1);
+const lastDay = new Date(lastMonth.getFullYear(), lastMonth.getMonth() + 1, 0);
+
+console.log("Start date of last month: ", firstDay);
+console.log("End date of last month: ", lastDay);
+// Last Month Function
+
+// This Year Function
+const tYtoday = new Date(); // Get today's date
+const yearStart = new Date(today.getFullYear(), 0, 1); // Get start of the year
+
+console.log(yearStart); // Output: Wed Jan 01 2023 00:00:00 GMT+0530 (India Standard Time)
+console.log(tYtoday); // Output: Mon May 02 2023 12:02:24 GMT+0530 (India Standard Time)
+// This Year Function
+
+// Last Year Function
+const now = new Date(); // get the current date
+const lastYear = new Date(); // create a new date object
+lastYear.setFullYear(now.getFullYear() - 1); // set the year to the previous year
+
+const lYstartDate = new Date(lastYear.getFullYear(), 0, 1); // set the month and date to January 1st
+const lYendDate = new Date(lastYear.getFullYear(), 11, 31); // set the month and date to December 31st
+
+console.log('Last Year 1st Day', lYstartDate);
+console.log('Last Year last Day', lYendDate);
+// Last Year Function
+
+  </script>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css"
+    />
+    <title>Ag Grid Enterprise</title>
+  </head>
+  <body>
+    <div
+      id="myGrid"
+      class="ag-theme-alpine"
+      style="height: 800px; width: 100%"
+    ></div>
+
+    <script type="text/javascript" charset="utf-8">
+      const gridOptions = {
+        rowData: [],
+        columnDefs: [
+          { field: "athlete" },
+          { field: "age" },
+          { field: "country" },
+          { field: "year" },
+          { field: "date" },
+          { field: "sport" },
+          { field: "gold" },
+          { field: "silver" },
+          { field: "bronze" },
+          { field: "total" },
+        ],
+        defaultColDef: {
+          sortable: true,
+          filter: true,
+          enableRowGroup: true
+        },
+        rowGroupPanelShow:'always'
+      };
+
+      const eGridDiv = document.querySelector("#myGrid");
+      new agGrid.Grid(eGridDiv, gridOptions);
+
+      fetch(
+        "https://www.ag-grid.com/example-assets/olympic-winners.json"
+      )
+        .then((response) => response.json())
+        .then((data) => gridOptions.api.setRowData(data));
+    </script>
+  </body>
+</html> -->
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,4 +342,4 @@
         </div>
     </section>
 </body>
-</html>
+</html> -->
