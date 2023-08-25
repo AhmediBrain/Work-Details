@@ -12,6 +12,7 @@ import ParentsInfo from '../components/ParentsInfo'
 import MultipleApi from '../components/MultipleApi'
 import BasicForm from '../components/forms/BasicForm'
 import ReactWeatherApp from '../components/weather-app/ReactWeatherApp'
+import DateRangeSummaryReport from '../components/weather-app/DateRangeSummaryReport'
 // children: [
 //   {
 //     path: "forms",
@@ -71,6 +72,10 @@ const MainRoutes = () => {
     {
       path: 'weather',
       element: <ReactWeatherApp />
+    },
+    {
+      path: 'summary',
+      element: <DateRangeSummaryReport />
     }
   ])
 

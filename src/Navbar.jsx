@@ -62,6 +62,11 @@ const Navbar = () => {
                 Weather
             </Link>
         </div>
+        <div>
+            <Link to='summary'>
+                Summary
+            </Link>
+        </div>
     </Container>
   )
 }
