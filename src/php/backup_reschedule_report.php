@@ -1,11 +1,11 @@
 <?php
 
     include("CRUD/student_sessions_part_CRUD.php");
-    $studentsSessionsFunctions = new StudentSessionsPart;
+    //$studentsSessionsFunctions = new StudentSessionsPart;
     include("CRUD/students_CRUD.php");
-    $studentsFunctions = new Students;
+    //$studentsFunctions = new Students;
     include("CRUD/users_CRUD.php");
-    $usersFunctions = new Users;
+    //$usersFunctions = new Users;
 
     define('TIMEZONE', 'America/New_York');
     date_default_timezone_set(TIMEZONE);

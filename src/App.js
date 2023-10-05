@@ -3,18 +3,29 @@ import React, { useState } from "react";
 import { LoginContext } from './contexts/LoginContext';
 import ProjectLogin from './ProjectLogin';
 import Profile from './Profile';
+//import Navbar from "./Components/Navbar";
+import ResNavbar from './components/responsive-navbar/ResNavbar';
+//import SideNavbar from './components/responsive-navbar/SideNavbar';
+//import { BrowserRouter } from 'react-router-dom';
 
 
 function App() {
-  const [showProfile, setShowProfile] = useState(false)
-  const [userName, setUserName] = useState('')
+  // const [showProfile, setShowProfile] = useState(false)
+  // const [userName, setUserName] = useState('')
 
   return (
-    <div>
-      <LoginContext.Provider value={{userName, setUserName, setShowProfile}}>
-        {showProfile ? <Profile /> : <ProjectLogin />}
-      </LoginContext.Provider>
-    </div>
+    // <div>
+    //   <LoginContext.Provider value={{userName, setUserName, setShowProfile}}>
+    //     {showProfile ? <Profile /> : <ProjectLogin />}
+    //   </LoginContext.Provider>
+    //{/* <ResNavbar/> */}
+    // </div>
+    <>
+      {/* <BrowserRouter> */}
+        <ResNavbar />
+      {/* </BrowserRouter> */}
+    </>		
+	
   );
 }
 

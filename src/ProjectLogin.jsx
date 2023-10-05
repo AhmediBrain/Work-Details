@@ -16,7 +16,7 @@ const LoginForm = styled.form`
 const Details = styled.div`
     display: flex;
     margin: auto;
-    justify-content: 
+    justify-content: center;
 `
 
 const ProjectLogin = () => {

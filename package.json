@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@material/textfield": "^14.0.0",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.6",
@@ -22,6 +25,7 @@
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-to-print": "^2.14.12",
